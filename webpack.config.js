@@ -1,10 +1,17 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+var entry = [
+    "main",
+    "fly"
+]
+var webpackEntry = {};
+entry.forEach(item => {
+    webpackEntry[item] = `./src/script/${item}.js`;
+});
 var config = {
     devtool: "source-map",
-    entry: "./src/main.js",
+    entry: webpackEntry,
     output: {
         path: path.resolve(__dirname, 'webapp/script'),
         filename: '[name].js',
@@ -15,7 +22,7 @@ var config = {
             test: /\.less$/,
             use: ExtractTextPlugin.extract({
                 fallback: "style-loader",
-                use: ['css-loader?minimize', 'postcss-loader', 'less-loader']
+                use: ['css-loader?minimize', 'less-loader']
             })
         }, {
             test: /\.js/,
@@ -28,7 +35,7 @@ var config = {
     plugins: [
         new ExtractTextPlugin({
             filename:  (getPath) => {
-                return getPath('../css/[name].css').replace('css/js', 'css');
+                return getPath('../css/[name]/[name].css').replace('css/js', 'css');
             },
             allChunks: true
         })

@@ -48,6 +48,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', function (req, res) {
     res.sendFile(path.resolve(__dirname,'index.html'));
 });
+app.get('/fly', function (req, res) {
+    res.sendFile(path.resolve(__dirname,'fly.html'));
+});
 
 
 const port = isProduction ? (process.env.PORT || 80) : 4002;
