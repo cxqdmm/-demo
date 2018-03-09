@@ -51,6 +51,9 @@ app.get('/', function (req, res) {
 app.get('/fly', function (req, res) {
     res.sendFile(path.resolve(__dirname,'fly.html'));
 });
+app.get('/tree', function (req, res) {
+    res.sendFile(path.resolve(__dirname,'tree.html'));
+});
 
 
 const port = isProduction ? (process.env.PORT || 80) : 4002;

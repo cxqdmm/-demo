@@ -1,5 +1,5 @@
-import '../css/fly/index.less'
-import { freezePage } from '../util/freezePage'
+import '../../css/fly/index.less'
+import { freezePage } from '../../util/freezePage'
 import {
     Scene,
     WebGLRenderer,

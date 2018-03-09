@@ -2,8 +2,9 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var entry = [
-    "main",
-    "fly"
+    "main/index",
+    "fly/index",
+    "tree/index"
 ]
 var webpackEntry = {};
 entry.forEach(item => {
@@ -35,7 +36,7 @@ var config = {
     plugins: [
         new ExtractTextPlugin({
             filename:  (getPath) => {
-                return getPath('../css/[name]/[name].css').replace('css/js', 'css');
+                return getPath('../css/[name].css').replace('css/js', 'css');
             },
             allChunks: true
         })

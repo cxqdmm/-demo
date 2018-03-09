@@ -1,5 +1,5 @@
 import TWEEN from 'tween'
-import { freezePage } from '../util/freezePage'
+import { freezePage } from '../../util/freezePage'
 import {
     Scene,
     WebGLRenderer,
