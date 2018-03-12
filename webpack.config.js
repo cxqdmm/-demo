@@ -16,7 +16,7 @@ var config = {
     output: {
         path: path.resolve(__dirname, 'webapp/script'),
         filename: '[name].js',
-        publicPath: 'https://mxfd.vipstatic.com/script/'
+        publicPath: 'http://localhost:4002/script'
     },
     module: {
         rules: [{
@@ -36,7 +36,11 @@ var config = {
     plugins: [
         new ExtractTextPlugin({
             filename:  (getPath) => {
-                return getPath('../css/[name].css').replace('css/js', 'css');
+                if (process.env.NODE_ENV == "production") {
+                    return getPath('../css/[name].css').replace('css/js', 'css');
+                } else {
+                    return getPath('[name].css');
+                }
             },
             allChunks: true
         })
