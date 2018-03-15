@@ -2,9 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var entry = [
-    "main/index",
-    "fly/index",
-    "tree/index"
+    // "main/index",
+    // "fly/index",
+    // "tree/index",
+    "reactDemo/index",
 ]
 var webpackEntry = {};
 entry.forEach(item => {
@@ -25,13 +26,20 @@ var config = {
                 fallback: "style-loader",
                 use: ['css-loader?minimize', 'less-loader']
             })
-        }, {
-            test: /\.js/,
-            loader: 'babel-loader',
-            query: {
-                presets: ['es2015', 'stage-0']
+        },{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  'env',
+                  'react',
+                  'stage-1'],
+                  "plugins": ["transform-decorators-legacy"]
+              }
             }
-        }]
+          }]
     },
     plugins: [
         new ExtractTextPlugin({
