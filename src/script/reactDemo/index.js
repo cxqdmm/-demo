@@ -37,8 +37,29 @@ class Hell extends Component {
         document.querySelector('#testEvent').removeEventListener('click');
     }
     handleClick (e) {
-       var a = {'name': 'hello'}
-       if ('name' in a) {console.log(1)}
+        function iterateOver(...args) {  
+            this.index = 0;  
+        
+            this[Symbol.iterator] = function() {  
+                console.log(22)
+                this.index = 0;
+                return this;//返回this
+            };
+            this.next = function() {//把next放到外面的对象上
+                if (this.index < args.length) {  
+                    return { value: args[this.index++],done:false };  
+                } else {  
+                    return { done: true };  
+                }  
+            }  
+        }
+        let demo = new iterateOver(1,2,3);
+        const iter = demo[Symbol.iterator]();
+        for (var i of demo) {console.log(i)}
+        for (var i of demo) {console.log(i)}
+        for (var i of iter) {console.log(i)}
+        for (var i of iter) {console.log(i)}
+
     }
     render() {
 
